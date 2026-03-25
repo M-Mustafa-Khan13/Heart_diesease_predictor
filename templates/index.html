@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="left-panel">
+            <p class="kicker">Heart Health Assessment</p>
+            <h1>Are You at Risk of Heart Disease?</h1>
+            <p class="subtext">Check your risk using key health indicators</p>
+
+            <div class="health-tips">
+                <article class="tip-card">Maintain a healthy diet</article>
+                <article class="tip-card">Exercise regularly</article>
+                <article class="tip-card">Monitor your blood pressure</article>
+            </div>
+
+            <figure class="heart-visual" aria-label="Heart health illustration">
+                <img src="{{ url_for('static', filename='heart-medical.svg') }}" alt="Heart and medical cross illustration">
+            </figure>
+        </section>
+
+        <section class="right-panel">
+            <article class="form-card">
+                <h2>Heart Disease Prediction</h2>
+                <form id="form">
+                    <div class="form-grid">
+                        <div class="form-control">
+                            <label for="age">Age</label>
+                            <input id="age" type="number" name="age" placeholder="Enter age (1-120)" min="1" max="120" step="1">
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="sex">Sex</label>
+                            <select id="sex" name="sex">
+                                <option value="" selected disabled>Select sex (0-1)</option>
+                                <option value="0">Female</option>
+                                <option value="1">Male</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="resting_bp">Resting Blood Pressure</label>
+                            <input id="resting_bp" type="number" name="resting_bp" placeholder="Enter resting BP (50-250)" min="50" max="250" step="1">
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="cholesterol">Cholesterol</label>
+                            <input id="cholesterol" type="number" name="cholesterol" placeholder="Enter cholesterol (50-700)" min="50" max="700" step="1">
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="max_heart_rate">Maximum Heart Rate</label>
+                            <input id="max_heart_rate" type="number" name="max_heart_rate" placeholder="Enter max heart rate (50-250)" min="50" max="250" step="1">
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="st_depression">ST Depression</label>
+                            <input id="st_depression" type="number" step="0.1" name="st_depression" placeholder="Enter ST depression (0.0-10.0)" min="0" max="10">
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="chest_pain_type">Chest Pain Type</label>
+                            <select id="chest_pain_type" name="chest_pain_type">
+                                <option value="" selected disabled>Select chest pain type (0-3)</option>
+                                <option value="0">Type 0</option>
+                                <option value="1">Type 1</option>
+                                <option value="2">Type 2</option>
+                                <option value="3">Type 3</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="fasting_blood_sugar">Fasting Blood Sugar</label>
+                            <select id="fasting_blood_sugar" name="fasting_blood_sugar">
+                                <option value="" selected disabled>Select fasting blood sugar (0-1)</option>
+                                <option value="0">Less than or equal to 120 mg/dl</option>
+                                <option value="1">Greater than 120 mg/dl</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="rest_ecg">Resting ECG</label>
+                            <select id="rest_ecg" name="rest_ecg">
+                                <option value="" selected disabled>Select resting ECG type (0-2)</option>
+                                <option value="0">Normal</option>
+                                <option value="1">ST-T Wave Abnormality</option>
+                                <option value="2">Left Ventricular Hypertrophy</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="exercise_induced_angina">Exercise Induced Angina</label>
+                            <select id="exercise_induced_angina" name="exercise_induced_angina">
+                                <option value="" selected disabled>Select exercise angina (0-1)</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="st_slope">ST Slope</label>
+                            <select id="st_slope" name="st_slope">
+                                <option value="" selected disabled>Select ST slope (0-2)</option>
+                                <option value="0">Upsloping</option>
+                                <option value="1">Flat</option>
+                                <option value="2">Downsloping</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="num_major_vessels">Number of Major Vessels</label>
+                            <select id="num_major_vessels" name="num_major_vessels">
+                                <option value="" selected disabled>Select major vessels count (0-4)</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="thalassemia">Thalassemia</label>
+                            <select id="thalassemia" name="thalassemia">
+                                <option value="" selected disabled>Select thalassemia type (0-3)</option>
+                                <option value="0">Type 0</option>
+                                <option value="1">Type 1</option>
+                                <option value="2">Type 2</option>
+                                <option value="3">Type 3</option>
+                            </select>
+                            <small class="field-error"></small>
+                        </div>
+                    </div>
+
+                    <button type="submit">Predict Risk</button>
+                </form>
+
+                <h3 id="result" class="prediction-result"></h3>
+            </article>
+        </section>
+    </main>
+
+    <!-- Link to JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
