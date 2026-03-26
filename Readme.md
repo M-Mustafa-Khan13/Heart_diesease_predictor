@@ -16,3 +16,5 @@ pip install -r requirements.txt
 python app.py
 
 3. Send POST request to /predict
+
+4.  in future will integerate Deep learning into it
