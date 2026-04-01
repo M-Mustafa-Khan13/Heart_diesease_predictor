@@ -1,7 +1,7 @@
 from flask import Flask,request,jsonify,render_template
 import pandas as pd
 import joblib
-model = joblib.load("heart_model.pkl")
+model = joblib.load("heart_model_tuned.pkl")
 
 
 app=Flask(__name__)
